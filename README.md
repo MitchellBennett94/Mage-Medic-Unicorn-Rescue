@@ -1,11 +1,11 @@
 [README.md](https://github.com/user-attachments/files/23841978/README.md)
-##### ***Wizard Unicorn Healer***
+##### ***Mage Medic: Unicorn Rescue***
 
 
 
-This game is about a wizard who heals a wounded unicorn.
+This game is about a healing mage who rescues a wounded unicorn.
 
-Thru perilous locations the wizard must search for missing healing ingredients, by match-making locations and ingredients, and, encountering foes.
+Thru perilous locations the mage medic must search for missing healing ingredients, by match-making locations and ingredients, and, encountering foes.
 
 Once the ingredients are found the wizard must call upon the correct spell, riddled in latin terminology.
 
