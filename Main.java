@@ -110,15 +110,15 @@ public class Main {
         while (playerHealth > 0 && enemyHealth > 0) {
             System.out.println("\n" + name + " HP: " + playerHealth);
             System.out.println(enemyName + " HP: " + enemyHealth);
-            System.out.print("What do you do? (attack/defend): ");
+            System.out.print("What do you do? (attack/defend)Click \"a\" for attack or \"d\" for defend: ");
             String action = in.next().toLowerCase();
 
             // Player's turn
-            if (action.equals("attack")) {
+            if (action.equals("a")) {
                 int playerDamage = Math.max(0, playerAttack - enemyDefense); // Damage calculation
                 enemyHealth -= playerDamage;
                 System.out.println("You attack the " + enemyName + " and deal " + playerDamage + " damage!");
-            } else if (action.equals("defend")) {
+            } else if (action.equals("d")) {
                 System.out.println("You brace for the incoming attack, raising your guard.");
                 // Defense will be applied when the enemy attacks
             } else {
