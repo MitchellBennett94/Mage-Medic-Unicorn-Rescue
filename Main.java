@@ -66,7 +66,6 @@ public class Main {
             while (true) {
                 if (inventory.hasAllIngredients()) {
                     System.out.println("You have gathered all the ingredients! It's time to return to the unicorn.");
-                    SpellHandler.handleSpellInput(in, player.getName());
                     break;
                 }
 
