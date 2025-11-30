@@ -1,4 +1,4 @@
-##### ***Wizard Unicorn Healer***
+##### ***Mage Medic: Unicorn Rescue***
 
 
 
@@ -113,6 +113,7 @@ This would include different attack damages, with turn-based stratedgy style mec
 Also adding more riddles at each location to help with gameplay replayability.
 
 I would also like to add dialogue options to give more realistic presence of characters enemy and player alike.
+
 
 
 
