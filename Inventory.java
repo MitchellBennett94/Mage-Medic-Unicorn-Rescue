@@ -47,24 +47,25 @@ public class Inventory {
         return visitedLocations;
     }
 
-    public void printInventory() {
-        System.out.println("\n--- Inventory ---");
-        System.out.println("Ingredients Found:");
+    // Removed no-arg print methods to enforce ConsoleOutput usage explicitly
+
+    public void printInventory(ConsoleOutput output) {
+        output.printSection("Inventory");
+        output.print("Ingredients Found:");
         for (int i = 0; i < requiredIngredients.length; i++) {
             if (foundIngredients[i]) {
-                System.out.println("- " + requiredIngredients[i]);
+                output.printInventoryItem(requiredIngredients[i]);
             }
         }
     }
 
-    public void printVisitedLocations() {
-        System.out.println("\n--- Visited Locations ---");
+    public void printVisitedLocations(ConsoleOutput output) {
+        output.printSection("Visited Locations");
         if (visitedLocations.isEmpty()) {
-            System.out.println("No locations have been visited yet.");
+            output.print("No locations have been visited yet.");
         } else {
-            for (int i = 0; i < visitedLocations.size(); i++) {
-                System.out.println((i + 1) + ". " + visitedLocations.get(i));
-            }
+            String[] locationsArray = visitedLocations.toArray(new String[0]);
+            output.printList(locationsArray);
         }
     }
 }

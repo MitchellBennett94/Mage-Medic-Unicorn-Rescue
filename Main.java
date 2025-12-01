@@ -2,7 +2,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -10,36 +9,50 @@ public class Main {
 
     public static void main(String[] args) {
         try (Scanner in = new Scanner(System.in)) {
+            ConsoleInput input = new ConsoleInput(in);
+            ConsoleOutput output = new ConsoleOutput();
 
             // --- Collect basic character info ---
-            System.out.print("Enter your character's name: ");
-            String name = in.nextLine();
-            System.out.print("Choose a pronoun subject (he/she/they): ");
-            String proSubj = in.next().toLowerCase();
-            System.out.print("Choose a pronoun object (him/her/them): ");
-            String proObj = in.next().toLowerCase();
-            System.out.print("Choose a possessive adjective (his/her/their): ");
-            String proPossAdj = in.next().toLowerCase();
-            System.out.print("Enter your character's age: ");
-            int age = in.nextInt();
+                output.printSection("Character Creation");
+                String name = input.readWord("Enter your character name:");
+                String pronounSubject = input.readWord("Choose pronouns (he/she/they):");
+                int age = input.readIntInRange("Enter your age (1-120):", 1, 120);
+            // Validate pronouns
+            String proSubj;
+            while (true) {
+                proSubj = input.readWord("Choose a pronoun subject (he/she/they): ").toLowerCase();
+                if (proSubj.equals("he") || proSubj.equals("she") || proSubj.equals("they")) break;
+                output.printWarning("Please enter one of: he, she, they.");
+            }
+            String proObj;
+            while (true) {
+                proObj = input.readWord("Choose a pronoun object (him/her/them): ").toLowerCase();
+                if (proObj.equals("him") || proObj.equals("her") || proObj.equals("them")) break;
+                output.printWarning("Please enter one of: him, her, them.");
+            }
+            String proPossAdj;
+            while (true) {
+                proPossAdj = input.readWord("Choose a possessive adjective (his/her/their): ").toLowerCase();
+                if (proPossAdj.equals("his") || proPossAdj.equals("her") || proPossAdj.equals("their")) break;
+                output.printWarning("Please enter one of: his, her, their.");
+            }
+            // Age captured above with validated range
             
             // Create player character
             Character player = new Character(name, proSubj, proObj, proPossAdj, age, 100, 15, 5, 12);
             
+                output.printSection("Profile");
+                output.print("Name: " + name);
+                output.print("Age: " + age);
             // --- Prologue paragraph (≥ 5 sentences using ≥ 5 variables) ---
-            System.out.println();
-            System.out.println("~ ~ ~ Adventure Prologue ~ ~ ~");
-            System.out.println(player.getName() + " set out at dawn, " + player.getPossessiveAdjective() + " pack light");
-            System.out.println("At only " + player.getAge() + " years old, " + player.getPronounSubject() + " already carries stories that most would never dare to tell.");
-            System.out.println("In the pouch at " + player.getPossessiveAdjective() + " side clinked " +
-            player.getGold() + " gold coins— "
-            + "not much, but enough for bread and a bed in a quiet inn.");
-            System.out.println("A weathered sign pointed toward the Whispering Woods, and " + player.getPronounSubject()
-            + " felt a shiver that had nothing to do with the cold.");
-            System.out.println("Whatever waited beyond the treeline would test " +
-            player.getPronounObject() + ", but " + player.getName()
-            + " walked on without looking back.");
-            System.out.println();
+            output.printBlankLine();
+            output.printHeader("Adventure Prologue");
+            output.printStory(player.getName() + " set out at dawn, " + player.getPossessiveAdjective() + " pack light");
+            output.printStory("At only " + player.getAge() + " years old, " + player.getPronounSubject() + " already carries stories that most would never dare to tell.");
+            output.printStory("In the pouch at " + player.getPossessiveAdjective() + " side clinked " + player.getGold() + " gold coins— not much, but enough for bread and a bed in a quiet inn.");
+            output.printStory("A weathered sign pointed toward the Whispering Woods, and " + player.getPronounSubject() + " felt a shiver that had nothing to do with the cold.");
+            output.printStory("Whatever waited beyond the treeline would test " + player.getPronounObject() + ", but " + player.getName() + " walked on without looking back.");
+            output.printBlankLine();
 
             // Create inventory and locations
             String[] requiredIngredients = {"Moonpetal", "Dwarfstone", "Elvishberry"};
@@ -57,54 +70,43 @@ public class Main {
             GameEngine gameEngine = new GameEngine();
             
             // --- Game Start ---
-            System.out.println("After walking many hours into the heart of the Woods you stumble upon a wounded unicorn.");
-            System.out.println("The unicorn, laying badly-injured on the ground, looks up for your help.");
-            System.out.println("In order to heal the Unicorn, " + player.getName() + " must find three magical ingredients: Moonpetal, Dwarfstone, and Elvishberry.");
-            System.out.println("Your quest begins!");
+            output.printHeader("Quest Begins");
+            output.printStory("After walking many hours into the heart of the Woods you stumble upon a wounded unicorn.");
+            output.printStory("The unicorn, laying badly-injured on the ground, looks up for your help.");
+            output.printStory("In order to heal the Unicorn, " + player.getName() + " must find three magical ingredients: Moonpetal, Dwarfstone, and Elvishberry.");
+            output.printSuccess("Your quest begins!");
 
             // Main game loop
             while (true) {
                 if (inventory.hasAllIngredients()) {
-                    System.out.println("You have gathered all the ingredients! It's time to return to the unicorn.");
-                    SpellHandler.handleSpellInput(in, player.getName());
+                    output.printSuccess("You have gathered all the ingredients! It's time to return to the unicorn.");
+                    SpellHandler.handleSpellInput(input, output, player.getName());
                     break;
                 }
 
-                System.out.println("\n--- Choose Your Next Move ---");
-                System.out.println("1. Explore a new location");
-                System.out.println("2. Check inventory (ingredients)");
-                System.out.println("3. View visited locations");
-                System.out.println("4. Check player health");
-                System.out.println("5. Exit game");
-                System.out.print("Enter your choice: ");
-
-                String choiceStr = in.next();
-                int choice;
-                try {
-                    choice = Integer.parseInt(choiceStr);
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid input. Please enter a number.");
-                    continue;
-                }
+                String[] menuOptions = {
+                    "Explore a new location",
+                    "Check inventory (ingredients)",
+                    "View visited locations",
+                    "Check player health",
+                    "Exit game"
+                };
+                output.printMenu("Choose Your Next Move", menuOptions);
+                int choice = input.readMenuChoice("Enter your choice: ", 5);
 
                 switch (choice) {
                     case 1:
-                        System.out.println("\n--- Exploration ---");
-                        // Choose a new location to explore
-                        System.out.println("Which location will you visit?");
-                        for (int i = 0; i < locations.length; i++) {
-                            System.out.println((i + 1) + ". " + locations[i]);
-                        }
-                        System.out.print("Enter the number of the location: ");
-                        int locationChoice = in.nextInt();
-                        in.nextLine(); // Consume newline
+                        output.printSection("Exploration");
+                        output.print("Which location will you visit?");
+                        output.printList(locations);
+                        int locationChoice = input.readMenuChoice("Enter the number of the location: ", locations.length);
 
                         if (locationChoice >= 1 && locationChoice <= locations.length) {
                             String chosenLocation = locations[locationChoice - 1];
-                            gameEngine.exploreLocation(in, player, chosenLocation, inventory, 
+                            gameEngine.exploreLocation(input, output, player, chosenLocation, inventory, 
                                                       ingredientLocations, requiredIngredients);
                             if (!player.isAlive()) {
-                                System.out.println("Game Over!");
+                                output.printError("Game Over!");
                                 return;
                             }
                         } else {
@@ -112,16 +114,17 @@ public class Main {
                         }
                         break;
                     case 2:
-                        inventory.printInventory();
+                        inventory.printInventory(output);
                         break;
                     case 3:
-                        inventory.printVisitedLocations();
+                        inventory.printVisitedLocations(output);
                         break;
                     case 4:
-                        System.out.println("\n" + player.getName() + "'s Current Health: " + player.getHealth());
+                        output.printBlankLine();
+                        output.printStats(player.getName() + "'s Current Health", player.getHealth());
                         break;
                     case 5:
-                        System.out.println("Thank you for playing! Goodbye.");
+                        output.printSuccess("Thank you for playing! Goodbye.");
                         return; // Exit the main method
                     default:
                         System.out.println("Invalid choice. Please enter a number between 1 and 5.");
@@ -129,15 +132,15 @@ public class Main {
                 }
             }
             // If all ingredients are found, provide a hint for the spell
-            SpellHandler.handleSpellInput(in, player.getName(), true);
+            SpellHandler.handleSpellInput(input, output, player.getName(), true);
 
             // Final Boss Battle
-            System.out.println("\nAs you finish healing the unicorn, a dark presence looms nearby.");
-            System.out.println("The Evil Sorcerer, the one who harmed the unicorn, emerges to challenge you!");
+            output.printBlankLine();
+            output.printStory("As you finish healing the unicorn, a dark presence looms nearby.");
+            output.printStory("The Evil Sorcerer, the one who harmed the unicorn, emerges to challenge you!");
             Enemy evilSorcerer = new Enemy("Evil Sorcerer", 61, 15, 8);
-            BattleSystem.bossBattle(in, player, evilSorcerer);
-
-            System.out.println();
+            BattleSystem.bossBattle(input, output, player, evilSorcerer);
+            output.printBlankLine();
         
         }
     }

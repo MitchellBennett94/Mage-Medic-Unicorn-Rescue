@@ -9,7 +9,36 @@ public class Character {
     private int defense;
     private int gold;
 
+    // Full constructor with all parameters
     public Character(String name, String pronounSubject, String pronounObject, String possessiveAdjective, int age, int health, int attack, int defense, int gold) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Character name cannot be null or empty");
+        }
+        if (pronounSubject == null || pronounSubject.trim().isEmpty()) {
+            throw new IllegalArgumentException("Pronoun subject cannot be null or empty");
+        }
+        if (pronounObject == null || pronounObject.trim().isEmpty()) {
+            throw new IllegalArgumentException("Pronoun object cannot be null or empty");
+        }
+        if (possessiveAdjective == null || possessiveAdjective.trim().isEmpty()) {
+            throw new IllegalArgumentException("Possessive adjective cannot be null or empty");
+        }
+        if (age < 0) {
+            throw new IllegalArgumentException("Age cannot be negative");
+        }
+        if (health < 0) {
+            throw new IllegalArgumentException("Health cannot be negative");
+        }
+        if (attack < 0) {
+            throw new IllegalArgumentException("Attack cannot be negative");
+        }
+        if (defense < 0) {
+            throw new IllegalArgumentException("Defense cannot be negative");
+        }
+        if (gold < 0) {
+            throw new IllegalArgumentException("Gold cannot be negative");
+        }
+        
         this.name = name;
         this.pronounSubject = pronounSubject;
         this.pronounObject = pronounObject;
@@ -19,6 +48,16 @@ public class Character {
         this.attack = attack;
         this.defense = defense;
         this.gold = gold;
+    }
+
+    // Overloaded constructor with default stats (starter character)
+    public Character(String name, String pronounSubject, String pronounObject, String possessiveAdjective, int age) {
+        this(name, pronounSubject, pronounObject, possessiveAdjective, age, 100, 15, 5, 12);
+    }
+
+    // Overloaded constructor with custom stats but default gold
+    public Character(String name, String pronounSubject, String pronounObject, String possessiveAdjective, int age, int health, int attack, int defense) {
+        this(name, pronounSubject, pronounObject, possessiveAdjective, age, health, attack, defense, 12);
     }
 
     public String getName() {

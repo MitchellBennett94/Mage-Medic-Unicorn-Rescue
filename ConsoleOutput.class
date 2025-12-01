@@ -1,0 +1,94 @@
+// Source code is decompiled from a .class file using FernFlower decompiler (from Intellij IDEA).
+public class ConsoleOutput {
+   private static final String SEPARATOR = "=".repeat(50);
+   private static final String DASH_LINE = "-".repeat(50);
+
+   public ConsoleOutput() {
+   }
+
+   public void print(String var1) {
+      System.out.println(var1);
+   }
+
+   public void printBlankLine() {
+      System.out.println();
+   }
+
+   public void printHeader(String var1) {
+      System.out.println("\n" + SEPARATOR);
+      System.out.println(this.centerText(var1, 50));
+      System.out.println(SEPARATOR);
+   }
+
+   public void printSection(String var1) {
+      System.out.println("\n--- " + var1 + " ---");
+   }
+
+   public void printStory(String var1) {
+      System.out.println(var1);
+   }
+
+   public void printCombat(String var1) {
+      System.out.println(">>> " + var1);
+   }
+
+   public void printError(String var1) {
+      System.out.println("ERROR: " + var1);
+   }
+
+   public void printSuccess(String var1) {
+      System.out.println("✓ " + var1);
+   }
+
+   public void printWarning(String var1) {
+      System.out.println("! " + var1);
+   }
+
+   public void printMenu(String var1, String[] var2) {
+      this.printSection(var1);
+
+      for(int var3 = 0; var3 < var2.length; ++var3) {
+         System.out.println(var3 + 1 + ". " + var2[var3]);
+      }
+
+   }
+
+   public void printStats(String var1, int var2) {
+      System.out.println(var1 + " HP: " + var2);
+   }
+
+   public void printDetailedStats(String var1, int var2, int var3, int var4, int var5) {
+      this.printSection(var1 + "'s Stats");
+      System.out.println("Health: " + var2);
+      System.out.println("Attack: " + var3);
+      System.out.println("Defense: " + var4);
+      System.out.println("Gold: " + var5);
+   }
+
+   public void printSeparator() {
+      System.out.println(DASH_LINE);
+   }
+
+   public void printBossEncounter(String var1) {
+      System.out.println("\n" + SEPARATOR);
+      System.out.println("!!! BOSS BATTLE: " + var1 + " !!!");
+      System.out.println(SEPARATOR);
+   }
+
+   private String centerText(String var1, int var2) {
+      int var3 = (var2 - var1.length()) / 2;
+      String var10000 = " ".repeat(Math.max(0, var3));
+      return var10000 + var1;
+   }
+
+   public void printList(String[] var1) {
+      for(int var2 = 0; var2 < var1.length; ++var2) {
+         System.out.println(var2 + 1 + ". " + var1[var2]);
+      }
+
+   }
+
+   public void printInventoryItem(String var1) {
+      System.out.println("- " + var1);
+   }
+}
