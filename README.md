@@ -13,7 +13,6 @@ Once the ingredients are found the wizard must call upon the correct spell, ridd
 **Installation/ Setup instructions:**
 
 You will need the following to run this game:
-
 \*Java Development Kit (JDK) version 17 or higher.
 
 &nbsp;\*A terminal or command prompt.
@@ -113,12 +112,12 @@ Goblin HP: 13
 **Future Improvements:**
 
 I would like to add more complex combat and a health bar for players at each location.
+Such as, how the boss battle is implemented. Perhaps I change with inheritance?
 
-This would include different attack damages,  turn-based stratedgy style mechanics.
+The locations could also have a if-else branching to give depth of exploration with story changing. 
+Such as crossing a river by choosing to follow a broken log over the river or stepping over rocks.
 
-The locations could also have a if-else branching to give depth of exploration with story changing.
-
-Or creating a multi dimensional riddle for making a spell cast.
+Another improvment might be adding other items for collecting scrolls for spells that can help with battle, such as spells will deepen connection to title.
 
 I would also like to add more bridging story structure to make the game become more fluid throughout.
 
