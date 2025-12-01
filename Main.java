@@ -73,7 +73,7 @@ public class Main {
             output.printHeader("Quest Begins");
             output.printStory("After walking many hours into the heart of the Woods you stumble upon a wounded unicorn.");
             output.printStory("The unicorn, laying badly-injured on the ground, looks up for your help.");
-            output.printStory("In order to heal the Unicorn, " + player.getName() + " must find three magical ingredients: Moonpetal, Dwarfstone, and Elvishberry.");
+            output.printStory("In order to heal the Unicorn, " + player.getName() + " must find three magical ingredients for the rescue: Moonpetal, Dwarfstone, and Elvishberry.");
             output.printSuccess("Your quest begins!");
 
             // Main game loop
