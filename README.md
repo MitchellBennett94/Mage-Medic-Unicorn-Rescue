@@ -105,7 +105,8 @@ Goblin HP: 13
 
 **Features:**
 
-(Currently features variables, multiple arrays, branching paths, for and enhanced loops, Four-types of user-defined methods, and method overloading)
+(Currently features variables, multiple arrays, branching paths, for and enhanced loops, Four-types of user-defined methods, and method overloading
+Inheritance with (3) overridden sub-classess and a polymorhpism core. As well as Recursion with search and traversal for input and output.)
 
 
 
