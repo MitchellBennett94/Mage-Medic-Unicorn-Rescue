@@ -100,6 +100,14 @@ public class Character {
         return gold;
     }
 
+    public void addGold(int amount) {
+        this.gold = Math.max(0, this.gold + amount);
+    }
+
+    public int getMaxHealth() {
+        return 100; // Default max health for starter character
+    }
+
     public void takeDamage(int damage) {
         this.health -= damage;
     }

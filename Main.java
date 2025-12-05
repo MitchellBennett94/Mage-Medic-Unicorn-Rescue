@@ -66,8 +66,9 @@ public class Main {
             Collections.shuffle(locationList);
             locations = locationList.toArray(new String[0]);
             
-            // Create game engine
+            // Create game engine and inn
             GameEngine gameEngine = new GameEngine();
+            Inn inn = new Inn();
             
             // --- Game Start ---
             output.printHeader("Quest Begins");
@@ -89,10 +90,12 @@ public class Main {
                     "Check inventory (ingredients)",
                     "View visited locations",
                     "Check player health",
+                    "Visit the Inn (rest and heal)",
+                    "Check gold",
                     "Exit game"
                 };
                 output.printMenu("Choose Your Next Move", menuOptions);
-                int choice = input.readMenuChoice("Enter your choice: ", 5);
+                int choice = input.readMenuChoice("Enter your choice: ", 7);
 
                 switch (choice) {
                     case 1:
@@ -106,7 +109,7 @@ public class Main {
                             gameEngine.exploreLocation(input, output, player, chosenLocation, inventory, 
                                                       ingredientLocations, requiredIngredients);
                             if (!player.isAlive()) {
-                                output.printError("Game Over!");
+                                output.printError("Game Over! You have fallen in battle.");
                                 return;
                             }
                         } else {
@@ -124,23 +127,32 @@ public class Main {
                         output.printStats(player.getName() + "'s Current Health", player.getHealth());
                         break;
                     case 5:
+                        inn.rest(player, input, output);
+                        break;
+                    case 6:
+                        output.printBlankLine();
+                        output.print("Gold in pouch: " + player.getGold() + " coins");
+                        break;
+                    case 7:
                         output.printSuccess("Thank you for playing! Goodbye.");
                         return; // Exit the main method
                     default:
-                        System.out.println("Invalid choice. Please enter a number between 1 and 5.");
+                        System.out.println("Invalid choice. Please enter a number between 1 and 7.");
                         break;
                 }
             }
             // If all ingredients are found, provide a hint for the spell
             SpellHandler.handleSpellInput(input, output, player.getName(), true);
 
-            // Final Boss Battle
+            // Final Boss Battle with Evil Sorcerer
+            BossBattle.fightEvilSorcerer(input, output, player);
+            
+            // Game conclusion
             output.printBlankLine();
-            output.printStory("As you finish healing the unicorn, a dark presence looms nearby.");
-            output.printStory("The Evil Sorcerer, the one who harmed the unicorn, emerges to challenge you!");
-            Enemy evilSorcerer = new Enemy("Evil Sorcerer", 61, 15, 8);
-            BattleSystem.bossBattle(input, output, player, evilSorcerer);
-            output.printBlankLine();
+            output.printHeader("Quest Complete!");
+            output.printStory("With the Evil Sorcerer defeated and the unicorn healed, peace returns to the Whispering Woods.");
+            output.printStory("Your name will be remembered by all who know of your heroic deeds.");
+            output.printSuccess("Thank you for playing Mage, Medic, Unicorn Rescue!");
         
         }
     }

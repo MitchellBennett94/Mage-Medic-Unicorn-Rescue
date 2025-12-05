@@ -40,10 +40,34 @@ public class GameEngine {
         return rand.nextDouble() < 0.5; // 50% chance
     }
     
-    // Method to create and trigger a random enemy encounter
+    // Method to create and trigger a random enemy encounter (with spell variants)
     private void triggerRandomBattle(ConsoleInput input, ConsoleOutput output, Character player) {
-        int enemyHealth = 30 + rand.nextInt(30); // Random health from 30 to 60
-        Enemy goblin = new Enemy("Goblin", enemyHealth, 10, 3);
-        BattleSystem.battle(input, output, player, goblin);
+        int battleType = rand.nextInt(3); // 0: mana, 1: lightning, 2: super
+        
+        // 50% chance for spell battle, 50% for regular
+        if (rand.nextBoolean()) {
+            BattleSpells spellEnemy;
+            switch (battleType) {
+                case 0:
+                    spellEnemy = new ManaGeneratorEnemy("Mana Mage", 40, 30, 10);
+                    break;
+                case 1:
+                    spellEnemy = new LightningEnemy("Storm Elemental", 35, 20, 12);
+                    break;
+                default:
+                    spellEnemy = new SuperDamageEnemy("Chaos Wizard", 50, 10, 8);
+            }
+            BattleSystem.battleWithSpells(input, output, player, spellEnemy);
+            if (player.isAlive()) {
+                RewardSystem.awardRewardsForSpell(player, spellEnemy, output);
+            }
+        } else {
+            int enemyHealth = 30 + rand.nextInt(30);
+            Enemy goblin = new Enemy("Goblin", enemyHealth, 10, 3);
+            BattleSystem.battle(input, output, player, goblin);
+            if (player.isAlive()) {
+                RewardSystem.awardRewards(player, goblin, output);
+            }
+        }
     }
 }

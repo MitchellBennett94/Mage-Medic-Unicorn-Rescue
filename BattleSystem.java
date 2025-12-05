@@ -2,7 +2,77 @@
 
 public class BattleSystem {
     
-    // Regular battle method
+    // Battle with polymorphic BattleSpells enemies using PlayerCharacter abilities
+    public static void battleWithSpells(ConsoleInput input, ConsoleOutput output, Character player, BattleSpells enemy) {
+        output.printHeader("Spell Battle vs. " + enemy.getName());
+        output.printSection("A Wild " + enemy.getName() + " Appears!");
+
+        // Create a PlayerCharacter version of the player for spell battles
+        PlayerCharacter spellPlayer = new PlayerCharacter(player.getName(), player.getHealth(), 0, player.getAttack(), player.getDefense());
+
+        while (spellPlayer.isAlive() && enemy.isAlive()) {
+            output.printBlankLine();
+            output.printStats(spellPlayer.getName(), spellPlayer.getHealth());
+            output.printStats(enemy.getName(), enemy.getHealth());
+            output.print("Potions left: " + spellPlayer.getPotionsAvailable());
+            
+            String[] battleOptions = {
+                "Normal Attack",
+                "Heavy Attack (Lower defense)",
+                "Defend (Reduce damage taken)",
+                "Use Potion (Heal 20 HP)"
+            };
+            output.printMenu("Choose your action", battleOptions);
+            
+            int choice = input.readMenuChoice("Enter your choice (1-4): ", 4);
+
+            // Player's turn using menu
+            switch (choice) {
+                case 1: // Normal Attack
+                    spellPlayer.normalAttack(enemy, output);
+                    break;
+                case 2: // Heavy Attack
+                    spellPlayer.heavyAttack(enemy, output);
+                    break;
+                case 3: // Defend
+                    spellPlayer.defend(output);
+                    break;
+                case 4: // Use Potion
+                    spellPlayer.usePotion(output);
+                    break;
+            }
+
+            // Check if enemy is defeated
+            if (!enemy.isAlive()) {
+                output.printSuccess("You have defeated the " + enemy.getName() + "!");
+                return;
+            }
+
+            // Enemy's polymorphic spell attack
+            output.printBlankLine();
+            output.print("The " + enemy.getName() + " casts a spell...");
+            
+            // Simple damage calc for spell attacks
+            int spellDamage = 8;
+            if (spellPlayer.getDefenseBuff() == 2) {
+                spellDamage = spellDamage / 2; // Reduced if defending
+                output.printCombat("The spell is mostly blocked!");
+            }
+            
+            spellPlayer.takeDamageWithDefense(spellDamage);
+            output.printCombat("The " + enemy.getName() + " deals " + spellDamage + " damage!");
+            spellPlayer.resetDefenseBuff();
+
+            // Check if player is defeated
+            if (!spellPlayer.isAlive()) {
+                output.printBlankLine();
+                output.printError(spellPlayer.getName() + " has been defeated by the " + enemy.getName() + ".");
+                return;
+            }
+        }
+    }
+    
+    // Regular battle method (legacy)
     public static void battle(ConsoleInput input, ConsoleOutput output, Character player, Enemy enemy) {
         output.printHeader("Battle vs. " + enemy.getName());
         output.printSection("A Wild " + enemy.getName() + " Appears!");
