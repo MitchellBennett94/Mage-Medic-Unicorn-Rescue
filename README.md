@@ -80,24 +80,6 @@ java Main
 - **Enemy Scaling**: +3 HP, +1 ATK, +0.6 DEF per battle won
 - **Ultimate Attack Cost**: 80 mana (80% of max mana)
 
-## File Structure
-
-```
-├── GameGUI.java          # Main GUI game controller
-├── Main.java             # Console version entry point
-├── Character.java        # Player character with mana system
-├── Enemy.java            # Enemy AI and stats
-├── BattleSystem.java     # Combat mechanics
-├── GameEngine.java       # Core game logic
-├── Inventory.java        # Item tracking
-├── SpellHandler.java     # Healing spell riddle
-├── RewardSystem.java     # Mana distribution
-├── ConsoleInput.java     # Input handling
-├── ConsoleOutput.java    # Output handling
-├── BattleSpells.java     # Spell database
-└── BossBattle.java       # Boss battle logic
-```
-
 ## Game Progression
 
 1. **Character Creation** → Customize your hero
@@ -116,25 +98,3 @@ java Main
 - **Architecture**: Object-oriented design with separate classes for game components
 - **Combat**: Turn-based battle system with manual player control
 - **Save System**: Auto-compiles to preserve game state
-
-## Credits
-
-**Developer**: Mitchell Bennett  
-**Course**: SWDV110 - Fall 2025  
-**Project**: Recursive Adventure Game with GUI Enhancement
-
-## Version History
-
-- **v2.0** - GUI implementation with Swing, mana system, progressive difficulty
-- **v1.0** - Console-based adventure game
-
-## License
-
-This project is created for educational purposes as part of SWDV110 coursework.
-
----
-
-**Enjoy your adventure, Mage Medic! The unicorn needs you!**
-
-
-
