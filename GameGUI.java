@@ -15,7 +15,7 @@ public class GameGUI extends JFrame {
  private JLabel manaLabel;
  private JProgressBar healthBar;
  private JProgressBar manaBar;
- 
+
  // Game state
  private Character player;
  private Inventory inventory;
