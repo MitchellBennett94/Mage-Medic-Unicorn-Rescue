@@ -98,3 +98,11 @@ java Main
 - **Architecture**: Object-oriented design with separate classes for game components
 - **Combat**: Turn-based battle system with manual player control
 - **Save System**: Auto-compiles to preserve game state
+
+## Future changes
+ - I plan on condensing the different stats for location and ingredients into one inventory.
+ - As well as making the character enemies have special traits/powers.
+ - Make the locations more navigational, adding story strycture to combat.
+ - Making other GUI styling changes to match more with game theme.
+ - Keep tuning the health and mana, with the attack and defense to make optimized for choosing certain strategies.
+   Such as early boss attacks, or maybe adding a stealth element based on chosen paths.
