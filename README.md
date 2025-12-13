@@ -1,18 +1,21 @@
-##### ***Update My Research Website***
+[README.md](https://github.com/user-attachments/files/23841978/README.md)
+##### ***Mage Medic: Unicorn Rescue***
 
 
 
-This website is about a data collection platform, that stores manages and graphs information in real-time. 
-So that anyone can gain insights into a project and provide big picture changes to keep the development going. 
-Connecting scientists into a global communications hub that offers endless peer review and collaboration.
+This game is about a healing mage who rescues a wounded unicorn.
 
+Thru perilous locations the mage medic must search for missing healing ingredients, by match-making locations and ingredients, and, encountering foes.
+
+Once the ingredients are found the wizard must call upon the correct spell, riddled in latin terminology.
 
 
 **Installation/ Setup instructions:**
 
 You will need the following to run this game:
+\*Java Development Kit (JDK) version 17 or higher.
 
-\*Download extension Open Browser Preview within Visual Studios* Opens in specified browser.
+&nbsp;\*A terminal or command prompt.
 
 
 
@@ -24,26 +27,100 @@ You will need the following to run this game:
 
 2\.  Copy java code onto IDE.
 
+&nbsp;
 
-3\. Website will run in browser.
- Open in browser.
+3\.  Run compiler with Debug main option near public class section at top of code.
+
+\*Needs to be ran in debug main (CLASS)
+
+
+
+Game will run in terminal
+
+Upon starting the game, you will be prompted for input. The game is controlled by typing commands into the terminal.
+
+
+
+
 
 **Usage:**
 
-The user will need to navigate though each web page to find different information.
+As a text-based adventure game, the player will be asked to respond to prompted questions.
+
+With each answer the player will need to match the location with the ingredient.
+
+All while making sure not to guess too many times, or not guessing an ingredient if not existent of location.
+
+Each location the player will have a chance of encountering an enemy player, who can cause attack damage.
+
+The combat is based on a attack and defend mechanic that is accomplished with in-text prompt.
+
+Finally the player will need to solve the latin riddle to cast the healing spell for the unicorn.
+
+
+
+Example playthrough:
+
+
+
+*--- Choose Your Next Move ---
+1. Explore a new location
+2. Check inventory (ingredients)
+3. View visited locations
+4. Check player health
+5. Exit game
+Enter your choice:
+1
+
+
+
+*---Exploration---
+1. Ancient Moongrove
+2. Volcanic Ruins
+3. Dwarven Mines
+4. Keebler Forest
+Enter the number of the location:
+1
+You travel to Ancient Moongrove.
+You find the Moonpetal!
+
+
+*---A Wild Goblin APpears---
+The Goblin strikes, dealing 5 damage to you.
+
+Name(player) HP: 95
+Goblin HP: 25
+
+
+*What do you do? (attack/defend):
+attack
+You attack the Goblin and deal 12 damage!
+The Goblin prepares to strike...
+The Goblin strikes, dealing 5 damage to you.
+
+Name(Player) HP: 90
+Goblin HP: 13
+
 
 
 **Features:**
 
-(Currently features (3) web pages, login form, images, links, CSS external styling.)
+(Currently features variables, multiple arrays, branching paths, for and enhanced loops, Four-types of user-defined methods, and method overloading
+Inheritance with (3) overridden sub-classess and a polymorhpism core. As well as Recursion with search and traversal for input and output.)
 
 
 
 **Future Improvements:**
 
-I would like to add more tools that can function related tasks like storing information into a data form.
-More complex CSS styling such as effects and alignment.
-As well as adding an extra page for discussion.
-Plus adding more social media links.
-And  optimize SEO by increasing accessibility.
+I would like to add more complex combat and a health bar for players at each location.
+Such as, how the boss battle is implemented. Perhaps I change with inheritance?
+
+The locations could also have a if-else branching to give depth of exploration with story changing. 
+Such as crossing a river by choosing to follow a broken log over the river or stepping over rocks.
+
+Another improvment might be adding other items for collecting scrolls for spells that can help with battle, such as spells will deepen connection to title.
+
+I would also like to add more bridging story structure to make the game become more fluid throughout.
+
+
 
